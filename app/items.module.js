@@ -11,15 +11,14 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var items_service_1 = require('./items.service');
 var items_component_1 = require('./items.component');
-var app_routing_1 = require('./app.routing');
+var item_routing_1 = require('./item.routing');
 var common_1 = require('@angular/common');
-var platform_browser_1 = require('@angular/platform-browser');
 var ItemsModule = (function () {
     function ItemsModule() {
     }
     ItemsModule = __decorate([
         core_1.NgModule({
-            imports: [platform_browser_1.BrowserModule, common_1.CommonModule, app_routing_1.routing],
+            imports: [common_1.CommonModule, item_routing_1.routing],
             declarations: [items_component_1.ItemsComponent],
             providers: [items_service_1.ItemsService]
         }), 

@@ -8,7 +8,7 @@ const routes: Routes = [
   {path: '',
     redirectTo: '/login',
     pathMatch: 'full'},
-  {path:'login', component:LoginComponent}
+  {path:'login', component:LoginComponent},
   {path:'champions', component:ChampionsComponent},
   {path:'items', loadChildren:'./app/items.module'},
   {path:'champions/detail/:id', component:ChampionDetailComponant}

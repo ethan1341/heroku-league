@@ -1,13 +1,13 @@
 import { NgModule}           from '@angular/core';
 import {ItemsService} from './items.service';
 import {ItemsComponent} from './items.component';
-import { routing }            from './app.routing';
+import { routing }            from './item.routing';
 import { CommonModule }  from '@angular/common';
 import { BrowserModule }  from '@angular/platform-browser';
 
 
 @NgModule({
-    imports: [BrowserModule,CommonModule, routing],
+    imports: [CommonModule, routing],
     declarations: [ItemsComponent],
     providers:[ItemsService]
 })
