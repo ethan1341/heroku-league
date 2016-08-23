@@ -1,0 +1,27 @@
+
+.champion-grid-item,.checkbox-grid{
+  display:flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  padding:15px 0px;
+}
+
+.champion-grid-item img{
+  width:100px;
+  height:100px;
+}
+
+.container{
+  padding:50px 0px;
+  background-color:white;
+  margin-top:50px;
+}
+
+.filter{
+  margin-bottom:25px;
+}
+
+
