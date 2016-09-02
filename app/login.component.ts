@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { UserObject } from './userobject';
-import { LoginService } from './user-login.service';
+import { LoginService } from './login.service';
 import { ROUTER_DIRECTIVES } from '@angular/router';
 
 @Component({
@@ -21,29 +21,6 @@ registration = false;
 
   constructor(private loginService: LoginService){}
 
-  needsRegistration(registerStatus:boolean){
-    this.registration = registerStatus;
-  }
-
-  setUserName(username :string){
-   this.userObject.username = username;
-    console.log(this.userObject.username)
-  }
-
-  setPassword(password: string){
-    this.userObject.password = password;
-    console.log(this.userObject.password)
-  }
-
-  registerUsername(username: string){
-    console.log(username)
-    this.registerObject.username = username;
-  }
-
-  registerPassword(password: string){
-    console.log(password)
-    this.registerObject.password = password;
-  }
   postRegisterInfo(){
     console.log(this.registerObject);
     var userInfo:UserObject = this.registerObject;

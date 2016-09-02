@@ -9,6 +9,7 @@ import {ItemsService} from './items.service';
 })
 
 export class ItemsComponent{
+    specificItem:Item;
     items:Item[];
     errorMessage:string;
     constructor(
@@ -22,6 +23,10 @@ export class ItemsComponent{
     }
     ngOnInit(){
         this.getItems()
+    }
+    displayItem(item: Item){
+        console.log(item)
+       this.specificItem = item;
     }
 };
 

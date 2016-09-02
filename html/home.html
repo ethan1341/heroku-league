@@ -1,3 +1,4 @@
+
 <nav class="navbar navbar-default">
 <div class="container-fluid">
 <!-- Brand and toggle get grouped for better mobile display -->
@@ -16,12 +17,15 @@
 <ul class="nav navbar-nav">
 <li class="active"><a href="#">Home</a></li>
 <li><a routerLink="/champions" routerLinkActive="active">Heroes</a></li>
-<li><a routerLink="/items" [routerLinkActiveOptions]="{ exact: true }" routerLinkActive="active">Items</a></li>
-<li><a href="#">Your Stats</a></li>
+<li><a routerLink="/items" routerLinkActive="active">Items</a></li>
+    <li><a  routerLink ="/settings" routerLinkActive="active">Settings</a></li>
+    <li><a  routerLink ="/lookup" routerLinkActive="active">Look Up</a></li>
 </ul>
 </div><!-- /.navbar-collapse -->
 </div><!-- /.container-fluid -->
 </nav>
+
+
 
 <router-outlet></router-outlet>
 

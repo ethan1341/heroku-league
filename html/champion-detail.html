@@ -1,15 +1,21 @@
 <div *ngIf="champion" [style.background-image]="safeUrl" class="details-background">
-
         <div class="container">
             <div class="col-xs-12 header-container">
+                <h2>{{champion.name}} - {{champion.title}}</h2>
             </div>
 
             <div class="col-xs-12 info-container">
+                <h2>Skills</h2>
+                <div *ngFor = "let spell of champion.spells">
+                    <div class="spell-container">
+                        <div class=" col-xs-1 image-container"> <img src = "http://ddragon.leagueoflegends.com/cdn/6.16.2/img/spell/{{spell.image.full}}"/></div>
+                        <div class="text-container col-xs-11">
+                            <span class="">{{spell.description}}</span>
+                        </div>
+                    </div>
+                </div>
             </div>
-
-
         </div>
-
-    </div>
+</div>
 
 

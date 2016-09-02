@@ -4,22 +4,28 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule, JsonpModule, XHRBackend } from '@angular/http';
 import { routing }        from './app.routing';
 import { AppComponent } from './app.component';
-import { CommonModule }  from '@angular/common';
+import { ChampionService} from './champion.service';
+import { SafeResourceUrl, DomSanitizationService,BROWSER_SANITIZATION_PROVIDERS  } from '@angular/platform-browser';
+import {AuthGuard} from './settings.service';
+import { LookupService } from './lookup.service'
+import { LookupDetailPlayerComponent} from './lookup-detail-player.component'
+
 
 
 
 @NgModule({
     imports: [
-        CommonModule,
         BrowserModule,
         FormsModule,
         HttpModule,
         JsonpModule,
-        routing
+        routing,
     ],
 
+    providers:[  LookupService,ChampionService,BROWSER_SANITIZATION_PROVIDERS,AuthGuard ],
+
     declarations: [
-        AppComponent
+        AppComponent,LookupDetailPlayerComponent
     ],
     bootstrap: [ AppComponent]
 })

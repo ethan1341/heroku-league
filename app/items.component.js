@@ -22,6 +22,10 @@ var ItemsComponent = (function () {
     ItemsComponent.prototype.ngOnInit = function () {
         this.getItems();
     };
+    ItemsComponent.prototype.displayItem = function (item) {
+        console.log(item);
+        this.specificItem = item;
+    };
     ItemsComponent = __decorate([
         core_1.Component({
             selector: 'items-component',

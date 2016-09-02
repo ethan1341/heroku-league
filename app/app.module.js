@@ -14,22 +14,26 @@ var forms_1 = require('@angular/forms');
 var http_1 = require('@angular/http');
 var app_routing_1 = require('./app.routing');
 var app_component_1 = require('./app.component');
-var common_1 = require('@angular/common');
+var champion_service_1 = require('./champion.service');
+var platform_browser_2 = require('@angular/platform-browser');
+var settings_service_1 = require('./settings.service');
+var lookup_service_1 = require('./lookup.service');
+var lookup_detail_player_component_1 = require('./lookup-detail-player.component');
 var AppModule = (function () {
     function AppModule() {
     }
     AppModule = __decorate([
         core_1.NgModule({
             imports: [
-                common_1.CommonModule,
                 platform_browser_1.BrowserModule,
                 forms_1.FormsModule,
                 http_1.HttpModule,
                 http_1.JsonpModule,
-                app_routing_1.routing
+                app_routing_1.routing,
             ],
+            providers: [lookup_service_1.LookupService, champion_service_1.ChampionService, platform_browser_2.BROWSER_SANITIZATION_PROVIDERS, settings_service_1.AuthGuard],
             declarations: [
-                app_component_1.AppComponent
+                app_component_1.AppComponent, lookup_detail_player_component_1.LookupDetailPlayerComponent
             ],
             bootstrap: [app_component_1.AppComponent]
         }), 

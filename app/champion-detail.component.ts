@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, ViewEncapsulation } from '@angular/core';
 import {  Router, ActivatedRoute} from '@angular/router';
 import { Champion } from './champion.ts';
 import { ChampionService} from './champion.service';
@@ -7,11 +7,11 @@ import { SafeResourceUrl, DomSanitizationService,BROWSER_SANITIZATION_PROVIDERS,
 
 
 
+
 @Component({
     selector: 'champion-detail',
     templateUrl:'html/champion-detail.html',
     styleUrls:['css/champion-detail.css'],
-    providers:[ChampionService,BROWSER_SANITIZATION_PROVIDERS, ],
 })
 
 export class ChampionDetailComponant implements OnInit{

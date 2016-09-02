@@ -35,7 +35,6 @@ var ChampionDetailComponant = (function () {
             selector: 'champion-detail',
             templateUrl: 'html/champion-detail.html',
             styleUrls: ['css/champion-detail.css'],
-            providers: [champion_service_1.ChampionService, platform_browser_1.BROWSER_SANITIZATION_PROVIDERS,],
         }), 
         __metadata('design:paramtypes', [champion_service_1.ChampionService, router_1.ActivatedRoute, router_1.Router, platform_browser_1.DomSanitizationService])
     ], ChampionDetailComponant);

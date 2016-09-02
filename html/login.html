@@ -2,14 +2,14 @@
 <div class="fullscreen-section">
  <div class="col-xs-4 col-xs-offset-4 login-container">
    <span *ngIf="registration == false">
-   Enter Logn: <input #username (keyup) = setUserName(username.value) type="text" name="fname"><br>
-   Enter Password: <input #password (keyup) = setPassword(password.value) type="text" name="lname"><br>
+   Enter Logn: <input ([ngModel]) = "userObject.username" type="text" name="fname"><br>
+   Enter Password: <input ([ngModel]) = "userObject.password"  type="text" name="lname"><br>
    </span>
 
    <span *ngIf="registration == true">
 
-     Choose Username: <input #registerUserName (keyup) = registerUsername(registerUserName.value) type="text" name="lname"><br>
-   Choose Password: <input #registerUserPassword (keyup) = registerPassword(registerUserPassword.value) type="text" name="lname"><br>
+     Choose Username: <input ([ngModel]) = "registerObject.username"  type="text" name="lname"><br>
+   Choose Password: <input ([ngModel]) = "registerObject.password" type="text" name="lname"><br>
 
    </span>
   this is{{errorMessage}}
@@ -18,4 +18,5 @@
    <button (click)="postRegisterInfo()">Submit</button>
  </div>
 </div>
+
 

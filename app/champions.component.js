@@ -15,35 +15,56 @@ var ChampionsComponent = (function () {
     function ChampionsComponent(router, championService) {
         this.router = router;
         this.championService = championService;
+        this.displayList = [];
         this.championObject = {};
         this.filterSelect = {
-            assassins: false,
-            fighers: false,
-            mages: false,
-            tanks: false,
-            supports: false,
-            marksmen: false
+            Assassins: false,
+            Fighers: false,
+            Mages: false,
+            Tanks: false,
+            Supports: false,
+            Marksmen: false
         };
+        this.championList = [];
     }
-    ;
-    ChampionsComponent.prototype.onChange = function (selected) {
-        console.log(selected);
-    };
     ;
     ChampionsComponent.prototype.ngOnInit = function () {
         this.getChampions();
     };
     ;
-    ChampionsComponent.prototype.checkFilters = function (selected) {
-        console.log(selected);
+    ChampionsComponent.prototype.generateArray = function (obj) {
+        var objectArray = [];
+        Object.keys(obj).map(function (key) { });
+        Object.keys(obj).map(function (key) { objectArray.push(obj[key]); });
+        return objectArray;
+    };
+    ChampionsComponent.prototype.createDisplay = function (typeSelected) {
+        var search_term = typeSelected;
+        var dataKey = search_term + "Data";
+        console.log(typeSelected);
+        if (this.filterSelect[typeSelected] == true) {
+            this.displayList.unshift(this.championObject[typeSelected]);
+        }
+        else {
+            for (var i = this.displayList.length - 1; i >= 0; i--) {
+                console.log(dataKey);
+                if (this.displayList[i][dataKey] !== undefined) {
+                    this.displayList.splice(i, 1);
+                    console.log('hello', this.displayList);
+                }
+                else {
+                }
+            }
+        }
+        console.log(this.displayList);
     };
     ChampionsComponent.prototype.getChampions = function () {
         var _this = this;
         this.championService.getChampions()
-            .subscribe(function (champions) { return _this.championObject = champions; }, function (error) { return _this.errorMessage = error; });
+            .subscribe(function (champions) { _this.championObject = champions; console.log(_this.championObject); }, function (error) { return _this.errorMessage = error; });
     };
     ChampionsComponent.prototype.gotoDetail = function (champion) {
-        console.log('this ran');
+        console.log(champion);
         var link = ['champions/detail', champion.id];
         this.router.navigate(link);
     };
@@ -52,7 +73,6 @@ var ChampionsComponent = (function () {
             selector: 'champion-selector',
             templateUrl: 'html/champions.html',
             styleUrls: ['css/champions.css'],
-            providers: [champion_service_1.ChampionService]
         }), 
         __metadata('design:paramtypes', [router_1.Router, champion_service_1.ChampionService])
     ], ChampionsComponent);

@@ -29,7 +29,6 @@ var LoginService = (function () {
     LoginService.prototype.loginUser = function (info) {
     };
     LoginService.prototype.extractData = function (res) {
-        console.log('did this run');
         var body = res.json();
         return body.data || {};
     };
