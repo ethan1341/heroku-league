@@ -1,0 +1,34 @@
+<div class="col-xs-8">
+    <div *ngIf = "champion">
+        <div>
+            <h2>{{hostStats.displaySummoner}}</h2> <h3 *ngIf="hostStats.stats[0].winner == true">Winner</h3><h3 *ngIf="hostStats.stats[0].winner == false" >Loser</h3>
+        </div>
+        <img class="host-thumbnail" src="http://ddragon.leagueoflegends.com/cdn/6.17.1/img/champion/{{champion.image.full}}">
+    </div>
+    <div>
+        <div *ngIf = "hostStats.stats[0].item0 !== 0">
+            <img class="item-thumbnail" src ="http://ddragon.leagueoflegends.com/cdn/6.16.2/img/item/{{hostStats.stats[0].item0}}.png">
+        </div>
+        <div *ngIf = "hostStats.stats[0].item1 !== 0">
+            <img class="item-thumbnail" src ="http://ddragon.leagueoflegends.com/cdn/6.16.2/img/item/{{hostStats.stats[0].item1}}.png">
+        </div>
+
+        <div *ngIf = "hostStats.stats[0].item2 !== 0">
+            <img class="item-thumbnail" src ="http://ddragon.leagueoflegends.com/cdn/6.16.2/img/item/{{hostStats.stats[0].item2}}.png">
+        </div>
+
+        <div *ngIf = "hostStats.stats[0].item3 !== 0">
+            <img class="item-thumbnail" src ="http://ddragon.leagueoflegends.com/cdn/6.16.2/img/item/{{hostStats.stats[0].item3}}.png">
+        </div>
+
+        <div *ngIf = "hostStats.stats[0].item4 !== 0">
+            <img class="item-thumbnail" src ="http://ddragon.leagueoflegends.com/cdn/6.16.2/img/item/{{hostStats.stats[0].item4}}.png">
+        </div>
+
+        <div *ngIf = "hostStats.stats[0].item5 !== 0">
+            <img class="item-thumbnail" src ="http://ddragon.leagueoflegends.com/cdn/6.16.2/img/item/{{hostStats.stats[0].item5}}.png">
+        </div>
+    </div>
+</div>
+
+

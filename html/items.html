@@ -1,7 +1,6 @@
 <div class="container">
     <div class="col-xs-12 item-grid">
-
-        <div class="col-xs-2 display-item">
+        <div class="col-xs-5 col-sm-5 col-md-3 display-item">
             <div *ngIf = "specificItem == undefined">
                 Please select an item
             </div>
@@ -11,11 +10,9 @@
                     {{specificItem.itemObject.plaintext}}<br>
                     {{specificItem.itemObject.sanitizedDescription}}<br>
             </div>
-
         </div>
-
-        <ul *ngIf ="items" class="col-xs-9 item-container" >
-            <li *ngFor=" let item of items" class="col-xs-2 item-info" (mouseover) = "displayItem(item)">
+        <ul *ngIf ="items" class="col-xs-6 col-sm-6 col-md-8 item-container" >
+            <li *ngFor=" let item of items" class="col-xs-12 col-sm-4 item-info" (mouseover) = "displayItem(item)">
                 <img src = "http://ddragon.leagueoflegends.com/cdn/6.16.2/img/item/{{item.itemObject.image.full}}"/>
                 <span>{{item.itemObject.name}}</span>
             </li>

@@ -1,22 +1,20 @@
-
+<!--Made to text login and posting it worked no longer in use-->
 <div class="fullscreen-section">
- <div class="col-xs-4 col-xs-offset-4 login-container">
-   <span *ngIf="registration == false">
-   Enter Logn: <input ([ngModel]) = "userObject.username" type="text" name="fname"><br>
-   Enter Password: <input ([ngModel]) = "userObject.password"  type="text" name="lname"><br>
-   </span>
-
-   <span *ngIf="registration == true">
-
-     Choose Username: <input ([ngModel]) = "registerObject.username"  type="text" name="lname"><br>
-   Choose Password: <input ([ngModel]) = "registerObject.password" type="text" name="lname"><br>
-
-   </span>
-  this is{{errorMessage}}
-  this is{{response}}
-   <span  (click)="needsRegistration(false)">sign</span> or <span (click)="needsRegistration(true)"> register</span><br>
-   <button (click)="postRegisterInfo()">Submit</button>
- </div>
+    <div class="col-xs-4 col-xs-offset-4 login-container">
+        <span *ngIf="registration == false">
+            Enter Logn: <input ([ngModel]) = "userObject.username" type="text" name="fname"><br>
+            Enter Password: <input ([ngModel]) = "userObject.password"  type="text" name="lname"><br>
+        </span>
+        <span *ngIf="registration == true">
+            Choose Username: <input ([ngModel]) = "registerObject.username"  type="text" name="lname"><br>
+            Choose Password: <input ([ngModel]) = "registerObject.password" type="text" name="lname"><br>
+            this is{{errorMessage}}
+            this is{{response}}
+        </span>
+        <span  (click)="needsRegistration(false)">sign</span> or <span (click)="needsRegistration(true)"> register
+        </span><br>
+        <button (click)="postRegisterInfo()">Submit</button>
+    </div>
 </div>
 
 

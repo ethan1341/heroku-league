@@ -1,26 +1,29 @@
 
     <div *ngIf = "matchHistory" class = "container" >
-        <div *ngFor = "let match of matchHistory" class="match-container col-xs-12">
-
+        <div *ngFor = "let match of matchHistory let h = index" class="match-container col-xs-12">
+                <lookup-detail-host-selector  [hostStats]="hostStats[h]"></lookup-detail-host-selector>
             <div class="col-xs-2 red-team pull-right">
                 <div class="game-result" *ngIf="match.teams[0].winner == false">Lost</div>
+                <div class="game-result" *ngIf="match.teams[0].winner == true">Winner</div>
 
                 <div *ngFor = "let person of match.participantIdentities; let i = index">
                     <div *ngIf = "i <= 4"  class="red-team">
-                      <lookup-detail-player-component [championId]="match.participants[i].championId" [playerName] = "person.player.summonerName" ></lookup-detail-player-component>
-
+                      <lookup-detail-player-selector [championId]="match.participants[i].championId" [playerName] = "person.player.summonerName" ></lookup-detail-player-selector>
                     </div>
                 </div>
             </div>
 
             <div class="col-xs-2 blue-team pull-right">
-                <div class="game-result" *ngIf="match.teams[0].winner == false">Winner</div>
+                <div class="game-result" *ngIf="match.teams[1].winner == true">Winner</div>
+                <div class="game-result" *ngIf="match.teams[1].winner == false">Lost</div>
                 <div *ngFor = "let person of match.participantIdentities; let i = index">
                     <div *ngIf = "i >= 5"  class="blue-team">
-                        <lookup-detail-player-component [championId]="match.participants[i].championId" [playerName] = "person.player.summonerName"></lookup-detail-player-component>
+                        <div *ngIf = "searchedSummoner == person.player.summonerName">HELLO</div>
+                        <lookup-detail-player-selector [championId]="match.participants[i].championId" [playerName] = "person.player.summonerName"></lookup-detail-player-selector>
                     </div>
                 </div>
             </div>
-
         </div>
+
     </div>
+

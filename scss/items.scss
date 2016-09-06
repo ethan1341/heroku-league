@@ -1,17 +1,12 @@
 .item-grid{
   padding:35px 15px;
   background-color:rgba(0, 0, 0 ,.7);
-
 }
 
 .item-container{
   float:right;
   text-align:center;
 }
-
-
-
-
 
 .item-info{
   border:2px solid rgba(255, 255, 255, 0.66);
@@ -25,13 +20,12 @@
   align-items: center;
   height:133.75px;
   text-align:center;
-
 }
 
 .display-item{
   border:2px solid white;
   box-sizing: border-box;
-  height:90%;
+  height:75%;
   position:fixed;
   flex-direction: column;
   flex-wrap: nowrap;

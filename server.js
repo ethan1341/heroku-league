@@ -12,10 +12,10 @@ app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
 app.use(express.static(__dirname));
 
 //db settings
-var connect = mongoose.connect('mongodb://localhost/ng-league', function(err) {console.log(err)})
+var connect = mongoose.connect('mongodb://localhost/ng-league', function(err) {})
 var db = mongoose.connection;
 db.once('open', function() {
-  console.log('HELLO')
+  console.log('db opened')
 });
 
 var championSchema = new mongoose.Schema({
@@ -35,12 +35,8 @@ var userSchema = mongoose.Schema({
 var newuserinfo = mongoose.model('userinformation', userSchema);
 var championCollection = mongoose.model('championModel', championSchema);
 var itemCollection = mongoose.model('Item', itemSchema);
-    //itemCollection = representation of collection championModel(s) name of the collection in the database championSchema is the schema of the inputted object
-
-function success(){
-  console.log('success')
-}
-
+//itemCollection = representation of collection championModel(s) name of the collection in the database championSchema is the schema of the inputted object
+// Loads database with items
 function getItems(){
   var options = {
     method: "GET",
@@ -64,6 +60,7 @@ function getItems(){
   })
 }
 //getItems()
+//Loads database with items
 function getChampions(){
   var options = {
     method: "GET",
@@ -75,7 +72,6 @@ function getChampions(){
       "User-Agent": "Champions"
     }
   }
-
   request(options, function(error, response, body) {
     var championData = JSON.parse(body);
     for(key in championData.data){
@@ -85,8 +81,6 @@ function getChampions(){
         return success();
       })
     }
-
-
   })
 }
 
@@ -98,7 +92,6 @@ app.get('/', function(req,res){
 
 app.get('/champions', function(req,res){
   championCollection.find({},function(error, champions){
-    console.log(champions);
     res.send(champions)
   })
 })
@@ -116,53 +109,47 @@ app.get('/champions/detail/:id', function(req,res) {
     res.send(data)
   })
 });
-
+//Used to test post requests no longer used
 app.post('/post',bodyParser.json(), function(req,res){
 console.log(req);
 });
 
-
+//Nested get requests and use of async library...ugly refactor later
 app.get('/lookup/matchhistory/:name',bodyParser.json(), function(req,res){
-  function getMatches(matchId, callback){
+  var username = req.params.name.toLowerCase();
+  var useresc = username.replace(/\s+/g, '');
+  console.log(useresc)
+  getUserId(useresc,res);
+
+  function getUserId(username,res){
     var options = {
       method: "GET",
-      url: "https://global.api.pvp.net/api/lol/na/v2.2/match/"+matchId,
+      url: "https://na.api.pvp.net/api/lol/na/v1.4/summoner/by-name/" + username,
       qs: {
         api_key: "2ee8e653-62c7-403a-baf1-8e7bc56d0848"
       },
       headers: {
-        "User-Agent": "Champions"
+        "User-Agent": "usernames"
       }
     }
 
     request(options, function(error, response, body) {
-      var matchData = JSON.parse(body);
-      callback(null,matchData)
-    })
+      var verifiedUsername = JSON.parse(body);
+      if(verifiedUsername[username]){
+        getMatchList(verifiedUsername[username].id,res)
+      }else {
+        //if(verifiedUsername.status.status_code == 404 || verifiedUsername.status.status_code == 403){
+        return res.send(verifiedUsername.status.status_code);
+      }
+    });
   }
 
-  function sendHistory(error,result){
-    res.send(result)
-  }
-
-  var username = req.params.name;
-  var useresc = username.replace(/\s+/g, '');
-  var options = {
-    method: "GET",
-    url: "https://na.api.pvp.net/api/lol/na/v1.4/summoner/by-name/" + username,
-    qs: {
-      api_key: "2ee8e653-62c7-403a-baf1-8e7bc56d0848"
-    },
-    headers: {
-      "User-Agent": "usernames"
-    }
-  }
-  request(options, function(error, response, body) {
-    var verifiedUsername = JSON.parse(body)
-    var userid = verifiedUsername[useresc].id
+  function getMatchList(userId){
+    console.log(userId)
+    // Will hit no errors
     var option = {
       method: "GET",
-      url: "https://na.api.pvp.net/api/lol/na/v2.2/matchlist/by-summoner/" + userid,
+      url: "https://na.api.pvp.net/api/lol/na/v2.2/matchlist/by-summoner/" + userId,
       qs: {
         api_key: "2ee8e653-62c7-403a-baf1-8e7bc56d0848"
       },
@@ -173,16 +160,60 @@ app.get('/lookup/matchhistory/:name',bodyParser.json(), function(req,res){
     request(option, function(error, response, body) {
       var matchIdList = [];
       var matchHistory = JSON.parse(body);
-      for(var i = 0; i <= 0;i++){
-        matchIdList.push(matchHistory.matches[i].matchId)
+      if(matchHistory.status == undefined) {
+        // match history exists and did not hit API limit
+        for(var i = 0; i < 2;i++){
+          matchIdList.push(matchHistory.matches[i].matchId)
+        }
+        async.map(matchIdList, getMatchData, sendHistory);
+      }else{
+        console.log(matchHistory.status)
+        return res.send(matchHistory.status.status_code);
       }
-      async.map(matchIdList, getMatches, sendHistory);
     })
-  })
+  }
+
+  function getMatchData(matchId, callback){
+    var options = {
+      method: "GET",
+      url: "https://global.api.pvp.net/api/lol/na/v2.2/match/"+matchId,
+      qs: {
+        api_key: "2ee8e653-62c7-403a-baf1-8e7bc56d0848"
+      },
+      headers: {
+        "User-Agent": "Champions"
+      }
+    }
+    request(options, function(error, response, body) {
+      var matchData = JSON.parse(body);
+      callback(null,matchData)
+    })
+  }
+
+  function sendHistory(error,result){
+    var error = {};
+    error.status = null;
+    var wasError = false;
+    for(var i = 0; i < result.length;i++){
+      if(result[i].status){
+        console.log(result[i].status);
+        wasError = true;
+      }
+    }
+    if(wasError == true){
+      error.status = 429;
+      res.send(error.status)
+    }else{
+      res.send(result)
+    }
+
+  }
 });
 
 app.listen(8900, function() {
     console.log("listening on 8900!");
 });
+
+
 
 

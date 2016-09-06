@@ -12,13 +12,15 @@ var core_1 = require('@angular/core');
 var platform_browser_1 = require('@angular/platform-browser');
 var forms_1 = require('@angular/forms');
 var http_1 = require('@angular/http');
-var app_routing_1 = require('./app.routing');
+var app_routing_1 = require('./routing/app.routing');
 var app_component_1 = require('./app.component');
-var champion_service_1 = require('./champion.service');
+var champion_service_1 = require('./champions/champion.service');
 var platform_browser_2 = require('@angular/platform-browser');
-var settings_service_1 = require('./settings.service');
-var lookup_service_1 = require('./lookup.service');
-var lookup_detail_player_component_1 = require('./lookup-detail-player.component');
+var settings_service_1 = require('./settings/settings.service');
+var lookup_service_1 = require('./lookup/lookup.service');
+var items_service_1 = require('./items/items.service');
+var lookup_detail_player_component_1 = require('./lookup/lookup-detail-player.component');
+var lookup_detail_host_component_1 = require('./lookup/lookup-detail-host.component');
 var AppModule = (function () {
     function AppModule() {
     }
@@ -31,9 +33,9 @@ var AppModule = (function () {
                 http_1.JsonpModule,
                 app_routing_1.routing,
             ],
-            providers: [lookup_service_1.LookupService, champion_service_1.ChampionService, platform_browser_2.BROWSER_SANITIZATION_PROVIDERS, settings_service_1.AuthGuard],
+            providers: [lookup_service_1.LookupService, champion_service_1.ChampionService, platform_browser_2.BROWSER_SANITIZATION_PROVIDERS, settings_service_1.AuthGuard, items_service_1.ItemsService],
             declarations: [
-                app_component_1.AppComponent, lookup_detail_player_component_1.LookupDetailPlayerComponent
+                app_component_1.AppComponent, lookup_detail_player_component_1.LookupDetailPlayerComponent, lookup_detail_host_component_1.LookupDetailHostComponent //loaded in my router needs to be included
             ],
             bootstrap: [app_component_1.AppComponent]
         }), 

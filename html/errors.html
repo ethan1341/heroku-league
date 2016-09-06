@@ -1,0 +1,11 @@
+<div *ngIf = "responseError" class="container">
+    <div *ngIf = "responseError == 429">
+        You over used your API requests
+    </div>
+    <div *ngIf = "responseError == 404">
+        The username or match ID did not exist
+    </div>
+    <div *ngIf = "responseError == 404">
+        The server crashed
+    </div>
+</div>

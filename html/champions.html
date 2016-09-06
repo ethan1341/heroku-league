@@ -1,47 +1,47 @@
 <div class="container">
     <div class="col-xs-12 filter">
         <h2>Filters</h2>
-
-        <div class="col-xs-2 checkbox-grid">
+        <div class="col-xs-4 col-sm-2 checkbox-grid">
             <input type=checkbox [(ngModel)]=filterSelect.Assassins (ngModelChange) =  "createDisplay('Assassins')">Assassins
         </div>
 
-        <div class="col-xs-2 checkbox-grid">
+        <div class="col-xs-4 col-sm-2 checkbox-grid">
             <input type=checkbox [(ngModel)]=filterSelect.Fighters (ngModelChange) =  "createDisplay('Fighters')">Fighters
         </div>
 
-        <div class="col-xs-2 checkbox-grid">
+        <div class="col-xs-4 col-sm-2 checkbox-grid">
             <input type=checkbox [(ngModel)]=filterSelect.Mages (ngModelChange) =  "createDisplay('Mages')">Mages
         </div>
 
-        <div class="col-xs-2 checkbox-grid">
+        <div class="col-xs-4 col-sm-2 checkbox-grid">
             <input type=checkbox [(ngModel)]=filterSelect.Tanks (ngModelChange) =  "createDisplay('Tanks')">Tanks
         </div>
 
-        <div class="col-xs-2 checkbox-grid">
+        <div class="col-xs-4 col-sm-2 checkbox-grid">
             <input type=checkbox [(ngModel)]=filterSelect.Supports (ngModelChange) =  "createDisplay('Supports')">Supports
         </div>
 
-        <div class="col-xs-2 checkbox-grid">
+        <div class="col-xs-4  col-sm-2 checkbox-grid">
             <input type=checkbox [(ngModel)]=filterSelect.Marksmen (ngModelChange) =  "createDisplay('Marksmen')">Marksmen
         </div>
     </div>
-<ul class="champions col-xs-12" *ngIf = "displayList.length > 0" >
-    <div *ngFor = "let Championobject of displayList">
-        <div *ngFor="let ChampionObjectIndex of generateArray(Championobject)">
-            <div *ngFor = "let ChampionObjectKeys of generateArray(ChampionObjectIndex)" class="col-xs-2 champion-grid-item"  (click) ="gotoDetail(ChampionObjectKeys)">
-                <img src = "http://ddragon.leagueoflegends.com/cdn/6.16.2/img/champion/{{ChampionObjectKeys.image}}"/>
-                {{ChampionObjectKeys.name}}
-            </div>
 
+    <ul class="champions col-xs-12" *ngIf = "displayList.length > 0" >
+        <div *ngFor = "let Championobject of displayList">
+            <div *ngFor="let ChampionObjectIndex of generateArray(Championobject)">
+                <div *ngFor = "let ChampionObjectKeys of generateArray(ChampionObjectIndex)" class="col-xs-4 col-sm-3 col-md-2  champion-grid-item"  (click) ="gotoDetail(ChampionObjectKeys)">
+                    <img src = "http://ddragon.leagueoflegends.com/cdn/6.16.2/img/champion/{{ChampionObjectKeys.image}}"/>
+                    {{ChampionObjectKeys.name}}
+                </div>
+            </div>
         </div>
-    </div>
-</ul>
+    </ul>
 
     <ul class="champions col-xs-12" *ngIf = "displayList.length == 0  ">
-        <div *ngFor = "let champion of championObject['allChampions']" class="col-xs-2 champion-grid-item" (click) ="gotoDetail(champion)">
+        <div *ngFor = "let champion of championObject['allChampions']" class="col-xs-4 col-sm-3 col-md-2 champion-grid-item" (click) ="gotoDetail(champion)">
             <img src = "http://ddragon.leagueoflegends.com/cdn/6.16.2/img/champion/{{champion.image}}"/>
             {{champion.name}}
         </div>
     </ul>
-    </div>
+
+</div>

@@ -1,6 +1,3 @@
-body{
-  background-:none;
-}
 .details-background{
   -webkit-background-size: cover;
   -moz-background-size: cover;
@@ -26,10 +23,10 @@ body{
   justify-content: center;
   align-content: center;
   align-items: center;
-  height:30%;
+  height:25%;
   border:3px solid rgba(0, 0, 0, 0.5);
   background-color:rgba(0,0,0,0.2);
-  margin-bottom:5%;
+  margin-bottom:3%;
 }
 
 .header-container h2, .info-container h2{
@@ -64,11 +61,11 @@ body{
   height:75px;
 }
 
-
-
-
 .image-container img{
   height:75px;
   width:75px;
 }
 
+.skill-text{
+  overflow:hidden;
+}
