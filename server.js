@@ -213,9 +213,7 @@ app.get('/lookup/matchhistory/:name',bodyParser.json(), function(req,res){
   }
 });
 
-app.listen(8900, function() {
-    console.log("listening on 8900!");
-});
+app.listen(3000);
 
 
 
