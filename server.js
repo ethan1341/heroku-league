@@ -12,8 +12,9 @@ app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
 app.use(express.static(__dirname));
 
 //db settings
-var connect = mongoose.connect('mongodb://localhost/ng-league', function(err) {})
+var connect = mongoose.connect('mongodb://ethan1341:ethan@ds019826.mlab.com:19826/heroku_tbzwd2cj', function(err) {console.log(err)})
 var db = mongoose.connection;
+
 db.once('open', function() {
   console.log('db opened')
 });
@@ -59,6 +60,8 @@ function getItems(){
     }
   })
 }
+
+//function success(){}
 //getItems()
 //Loads database with items
 function getChampions(){
