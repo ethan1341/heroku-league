@@ -165,7 +165,7 @@ app.get('/lookup/matchhistory/:name',bodyParser.json(), function(req,res){
       var matchHistory = JSON.parse(body);
       if(matchHistory.status == undefined) {
         // match history exists and did not hit API limit
-        for(var i = 0; i < 2;i++){
+        for(var i = 0; i < 3;i++){
           matchIdList.push(matchHistory.matches[i].matchId)
         }
         async.map(matchIdList, getMatchData, sendHistory);
